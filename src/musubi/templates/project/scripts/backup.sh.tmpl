@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+set -eu
+
+backup_dir=${1:-./backups}
+timestamp=$(date -u +%Y%m%dT%H%M%SZ)
+mkdir -p "$backup_dir"
+docker compose exec -T zato zato enmasse --export --path /tmp/enmasse-export.yaml
+docker compose cp zato:/tmp/enmasse-export.yaml "$backup_dir/enmasse-$timestamp.yaml"
+echo "Backup written to $backup_dir/enmasse-$timestamp.yaml"

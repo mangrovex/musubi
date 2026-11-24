@@ -1,0 +1,11 @@
+description = "Producción con TLS, auditoría y política de imagen inmutable"
+environment = "Production"
+default_domain = "api.example.com"
+zato_image = "zatosource/zato-4.1:latest"
+zato_port = 17010
+caddy_http_port = 80
+caddy_https_port = 443
+replicas = 2
+log_level = "INFO"
+tls_mode = "{$CADDY_EMAIL}"
+audit_log = true

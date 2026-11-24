@@ -1,0 +1,60 @@
+name: {{ project_name }}
+
+services:
+  zato:
+    image: ${ZATO_IMAGE:-{{ zato_image }}}
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      Zato_Environment: {{ environment }}
+      Zato_Log_Level: {{ log_level }}
+      Zato_Project_Root: /opt/zato/project
+      Zato_Secret_Key: ${ZATO_SECRET_KEY:?ZATO_SECRET_KEY is required}
+    volumes:
+      - ./zato/enmasse:/opt/zato/project/enmasse:ro
+      - ./zato/services:/opt/zato/project/services:ro
+      - zato-data:/opt/zato/data
+      - ./logs:/opt/zato/logs
+    expose:
+      - "{{ zato_port }}"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:{{ zato_port }}/zato/ping || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    deploy:
+      replicas: {{ replicas }}
+    networks: [integration]
+    security_opt:
+      - no-new-privileges:true
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      zato:
+        condition: service_healthy
+    environment:
+      PUBLIC_DOMAIN: ${PUBLIC_DOMAIN:-{{ domain }}}
+      CADDY_EMAIL: ${CADDY_EMAIL:-ops@example.com}
+    ports:
+      - "{{ caddy_http_port }}:80"
+      - "{{ caddy_https_port }}:443"
+      - "{{ caddy_https_port }}:443/udp"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks: [integration]
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  integration:
+    driver: bridge
+
+volumes:
+  zato-data:
+  caddy-data:
+  caddy-config:

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "musubi-framework"
+version = "0.1.0"
+description = "Framework for converging systems, APIs and AI on Zato 4.1"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "MangroveX" }]
+keywords = ["zato", "integration", "api", "ai", "devops"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Environment :: Console",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+
+[project.scripts]
+musubi = "musubi.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+musubi = ["profiles/*.toml", "templates/project/**/*"]

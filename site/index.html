@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Musubi une sistemas, APIs e IA en un punto de integración sobre Zato 4.1.">
+    <meta name="theme-color" content="#17124b">
+    <title>Musubi — Todo converge</title>
+    <link rel="icon" href="assets/musubi-mark.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="nav-shell">
+      <nav class="nav" aria-label="Principal">
+        <a class="brand" href="#inicio" aria-label="Musubi, inicio">
+          <img src="assets/musubi-mark.png" alt="" width="42" height="42">
+          <span>musubi</span>
+        </a>
+        <div class="nav-links">
+          <a href="#concepto">Concepto</a>
+          <a href="#perfiles">Perfiles</a>
+          <a href="#inicio-rapido">Empezar</a>
+          <a class="nav-cta" href="https://github.com/mangrovex/musubi">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="contenido">
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <p class="eyebrow">Framework de integración · Zato 4.1</p>
+          <h1>Todo converge.<br><span>Todo queda unido.</span></h1>
+          <p class="lede">Musubi lleva sistemas, APIs e inteligencia artificial a un solo punto de integración: observable, reproducible y listo para evolucionar.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#inicio-rapido">Crear un proyecto</a>
+            <a class="button secondary" href="https://github.com/mangrovex/musubi">Ver código</a>
+          </div>
+          <ul class="hero-facts" aria-label="Características principales">
+            <li>Zato 4.1</li><li>CLI Python</li><li>dev · stage · prod</li>
+          </ul>
+        </div>
+        <div class="hero-mark" aria-label="Logo de Musubi: tres recorridos enlazados en un centro">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <img src="assets/musubi-mark.png" alt="Símbolo de Musubi formado por tres cintas enlazadas" width="520" height="520">
+        </div>
+      </section>
+
+      <section class="manifesto" id="concepto">
+        <div>
+          <p class="eyebrow">El nombre</p>
+          <h2>Musubi significa nudo, unión.</h2>
+        </div>
+        <div class="manifesto-copy">
+          <p>En japonés, <em>musubi</em> expresa la acción de unir. En este framework, el nombre resume una arquitectura donde tecnologías diferentes no se diluyen: se atan en un punto común y empiezan a trabajar como un sistema.</p>
+          <p>El logo convierte esa idea en una forma: tres recorridos representan <strong>sistemas</strong>, <strong>APIs</strong> e <strong>IA</strong>. Cada uno conserva su color, pero todos se entrelazan alrededor del mismo centro operativo.</p>
+        </div>
+      </section>
+
+      <section class="convergence" aria-labelledby="convergence-title">
+        <div class="section-heading">
+          <p class="eyebrow">Un punto, muchas capacidades</p>
+          <h2 id="convergence-title">La complejidad entra por separado.<br>La operación sale unificada.</h2>
+        </div>
+        <div class="flow" role="img" aria-label="Sistemas, APIs e IA confluyen en Musubi y Zato">
+          <div class="sources">
+            <article><span class="source-dot cyan"></span><h3>Sistemas</h3><p>ERP, CRM, archivos, colas y eventos.</p></article>
+            <article><span class="source-dot coral"></span><h3>APIs</h3><p>REST, SOAP, webhooks y contratos externos.</p></article>
+            <article><span class="source-dot indigo"></span><h3>IA</h3><p>Modelos, agentes y procesos enriquecidos.</p></article>
+          </div>
+          <div class="knot"><img src="assets/musubi-mark.png" alt="" width="160" height="160"><span>Musubi + Zato</span></div>
+          <div class="outcome"><span>Una operación</span><strong>segura · observable · desplegable</strong></div>
+        </div>
+      </section>
+
+      <section class="profiles" id="perfiles">
+        <div class="section-heading">
+          <p class="eyebrow">Una ruta hasta producción</p>
+          <h2>Tres perfiles. La misma estructura.</h2>
+        </div>
+        <div class="profile-grid">
+          <article><p class="profile-label">dev</p><h3>Explora rápido</h3><p>Logs detallados, TLS local y puertos cómodos para iterar sin fricción.</p><code>--profile dev</code></article>
+          <article class="featured"><p class="profile-label">stage</p><h3>Ensaya de verdad</h3><p>TLS automático y una topología cercana a producción para validar el despliegue.</p><code>--profile stage</code></article>
+          <article><p class="profile-label">prod</p><h3>Opera con control</h3><p>Auditoría, réplicas y validación estricta de imágenes fijadas por digest.</p><code>--profile prod</code></article>
+        </div>
+      </section>
+
+      <section class="quickstart" id="inicio-rapido">
+        <div class="quick-copy">
+          <p class="eyebrow">Inicio rápido</p>
+          <h2>Del repositorio a un proyecto en segundos.</h2>
+          <p>El CLI renderiza un proyecto autónomo con Compose, Caddy, Enmasse y un servicio Zato inicial. El runtime no depende del generador.</p>
+        </div>
+        <div class="terminal" aria-label="Comandos de inicio rápido">
+          <div class="terminal-bar"><span></span><span></span><span></span><button id="copy-command" type="button">Copiar</button></div>
+          <pre><code id="command-text">git clone https://github.com/mangrovex/musubi.git
+cd musubi
+python -m pip install -e .
+musubi init mi-integracion --profile dev
+musubi validate ./mi-integracion</code></pre>
+          <p id="copy-status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="closing">
+        <img src="assets/musubi-mark.png" alt="" width="84" height="84">
+        <h2>Integra sin perder el hilo.</h2>
+        <p>Un punto de convergencia para sistemas, APIs e IA.</p>
+        <a class="button primary" href="https://github.com/mangrovex/musubi">Construir con Musubi</a>
+      </section>
+    </main>
+
+    <footer><span>Musubi · estructura inicial 0.1.0</span><span>Construido para Zato 4.1</span></footer>
+  </body>
+</html>

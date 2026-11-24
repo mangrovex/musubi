@@ -1,0 +1,13 @@
+zato: 3.0
+
+security:
+  - name: musubi-health-apikey
+    type: apikey
+    username: musubi-health
+
+channel_rest:
+  - name: musubi-health
+    url_path: /musubi/health
+    service: musubi.health
+    security: musubi-health-apikey
+    active: true

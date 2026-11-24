@@ -1,0 +1,20 @@
+# {{ project_name }}
+
+Proyecto Musubi para Zato 4.1, generado con el perfil `{{ profile }}`.
+
+```bash
+cp .env.example .env
+# Reemplaza todos los valores CHANGE_ME antes de continuar.
+docker compose config --quiet
+docker compose up -d
+docker compose ps
+```
+
+Endpoint público: `https://{{ domain }}/musubi/health`.
+
+Antes de un despliegue de producción:
+
+1. Fija `ZATO_IMAGE` con digest (`imagen@sha256:...`).
+2. Exporta Enmasse y prueba su restauración.
+3. Guarda secretos fuera del repositorio.
+4. Verifica TLS, logs, auditoría y rollback.

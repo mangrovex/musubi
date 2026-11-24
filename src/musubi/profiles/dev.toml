@@ -1,0 +1,11 @@
+description = "Desarrollo local con puertos visibles y logs detallados"
+environment = "Development"
+default_domain = "localhost"
+zato_image = "zatosource/zato-4.1:latest"
+zato_port = 17010
+caddy_http_port = 8080
+caddy_https_port = 8443
+replicas = 1
+log_level = "DEBUG"
+tls_mode = "internal"
+audit_log = true
