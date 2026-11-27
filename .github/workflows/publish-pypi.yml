@@ -1,0 +1,99 @@
+name: Publish Musubi 0.1.0 to PyPI
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Upload the verified release to production PyPI
+        type: boolean
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: pypi-musubi-0.1.0
+
+jobs:
+  prepare:
+    if: github.repository == 'mangrovex/musubi' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download and verify the GitHub release distributions
+        run: |
+          mkdir dist
+          base_url=https://github.com/mangrovex/musubi/releases/download/v0.1.0
+          cd dist
+          curl -fsSLO --retry 3 "$base_url/musubi_framework-0.1.0-py3-none-any.whl"
+          curl -fsSLO --retry 3 "$base_url/musubi_framework-0.1.0.tar.gz"
+          sha256sum --check <<'CHECKSUMS'
+          116a64c71f456e9432a850b2a9e075e4522f46681f7b2c11ad90b09686a5cae9  musubi_framework-0.1.0-py3-none-any.whl
+          67dd3231c965c468ceec317fc3a50fa331f2860cadcefdcb2f681c66968729b5  musubi_framework-0.1.0.tar.gz
+          CHECKSUMS
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Check distributions and smoke-test the release wheel
+        run: |
+          python -m pip --isolated install --index-url https://pypi.org/simple twine
+          python -m twine check --strict dist/*
+          python -m venv "$RUNNER_TEMP/musubi-release"
+          export PATH="$RUNNER_TEMP/musubi-release/bin:$PATH"
+          python -m pip install --no-index dist/*.whl
+          test "$(musubi --version)" = 'musubi 0.1.0'
+          musubi profiles
+          for profile in dev stage prod; do
+            target="$RUNNER_TEMP/musubi-$profile"
+            musubi init "musubi-$profile" --profile "$profile" --output "$target"
+            musubi validate "$target"
+            test -f "$target/.gitignore"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: musubi-distributions
+          path: dist/
+          if-no-files-found: error
+
+  publish:
+    if: inputs.publish
+    needs: prepare
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/musubi-framework/0.1.0/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: musubi-distributions
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+
+  verify:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Install the exact version from public PyPI and exercise the CLI
+        run: |
+          python -m venv "$RUNNER_TEMP/musubi-pypi"
+          export PATH="$RUNNER_TEMP/musubi-pypi/bin:$PATH"
+          export PIP_CONFIG_FILE=/dev/null
+          for attempt in 1 2 3 4 5 6; do
+            if python -m pip --isolated install --no-cache-dir --index-url https://pypi.org/simple musubi-framework==0.1.0; then
+              break
+            fi
+            test "$attempt" -lt 6
+            sleep 10
+          done
+          test "$(musubi --version)" = 'musubi 0.1.0'
+          musubi profiles
+          for profile in dev stage prod; do
+            target="$RUNNER_TEMP/musubi-$profile"
+            musubi init "musubi-$profile" --profile "$profile" --output "$target"
+            musubi validate "$target"
+            test -f "$target/.gitignore"
+          done
+          musubi doctor "$RUNNER_TEMP/musubi-dev"
