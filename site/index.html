@@ -90,14 +90,13 @@
       <section class="quickstart" id="inicio-rapido">
         <div class="quick-copy">
           <p class="eyebrow">Inicio rápido</p>
-          <h2>Del repositorio a un proyecto en segundos.</h2>
-          <p>El CLI renderiza un proyecto autónomo con Compose, Caddy, Enmasse y un servicio Zato inicial. El runtime no depende del generador.</p>
+          <h2>De PyPI a tu primer proyecto.</h2>
+          <p>Instala Musubi con Python 3.11 o superior. El CLI genera un proyecto con Compose, Caddy, Enmasse y un servicio Zato inicial.</p>
         </div>
         <div class="terminal" aria-label="Comandos de inicio rápido">
           <div class="terminal-bar"><span></span><span></span><span></span><button id="copy-command" type="button">Copiar</button></div>
-          <pre><code id="command-text">git clone https://github.com/mangrovex/musubi.git
-cd musubi
-python -m pip install -e .
+          <pre><code id="command-text">python -m pip install musubi-framework==0.1.0
+musubi --version
 musubi init mi-integracion --profile dev
 musubi validate ./mi-integracion</code></pre>
           <p id="copy-status" role="status" aria-live="polite"></p>

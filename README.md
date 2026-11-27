@@ -9,13 +9,23 @@ de integración sobre **Zato 4.1**.
 
 ## Inicio rápido
 
+Se requiere Python 3.11 o superior y Docker con Compose para ejecutar el
+proyecto generado. Instala la versión publicada en PyPI y comprueba el CLI:
+
 ```bash
-python -m pip install -e .
+python -m pip install musubi-framework==0.1.0
+musubi --version
 musubi profiles
 musubi init pagos --profile dev --output ./pagos
 musubi validate ./pagos
-cd pagos && cp .env.example .env && docker compose up -d
 ```
+
+Para arrancar el proyecto, copia `pagos/.env.example` a `pagos/.env`,
+reemplaza los valores `CHANGE_ME` y ejecuta `docker compose up -d` desde
+el directorio `pagos`.
+
+Para desarrollar Musubi desde el código fuente, clona el repositorio y ejecuta
+`python -m pip install -e .` desde su raíz.
 
 ## Qué incluye
 
@@ -39,5 +49,5 @@ producción debe reemplazarse por una referencia inmutable con digest.
 
 ## Estado
 
-Estructura inicial `0.1.0`. La licencia aún debe ser elegida por el propietario
-antes de publicar el paquete para terceros.
+Estructura inicial `0.1.0`, publicada en PyPI. La licencia aún debe ser elegida
+por el propietario.
