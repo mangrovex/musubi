@@ -1,7 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" role="img" aria-labelledby="title desc">
   <title id="title">Musubi</title>
   <desc id="desc">Tres lazos de colores se reúnen en un nudo.</desc>
-  <path d="M128 135C89 107 63 103 46 115C25 129 23 155 37 176S76 207 96 194C113 183 122 159 128 135Z" stroke="#00AFC4" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M128 135C167 107 193 103 210 115C231 129 233 155 219 176S180 207 160 194C143 183 134 159 128 135Z" stroke="#F45E50" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M128 135C95 106 83 82 83 61C83 36 103 19 128 19S173 36 173 61C173 82 161 106 128 135Z" stroke="#231667" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <defs><mask id="junction"><rect width="256" height="256" fill="white"/><circle cx="128" cy="135" r="16" fill="black"/></mask></defs>
+  <g mask="url(#junction)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M128 135C89 107 63 103 46 115C25 129 23 155 37 176S76 207 96 194C113 183 122 159 128 135Z" stroke="#00AFC4"/>
+    <path d="M128 135C167 107 193 103 210 115C231 129 233 155 219 176S180 207 160 194C143 183 134 159 128 135Z" stroke="#F45E50"/>
+    <path d="M128 135C95 106 83 82 83 61C83 36 103 19 128 19S173 36 173 61C173 82 161 106 128 135Z" stroke="#231667"/>
+  </g>
+  <g fill="none" stroke-width="11" stroke-linecap="butt">
+    <path d="M128 122A13 13 0 0 1 139.258 141.5" stroke="#231667"/>
+    <path d="M139.258 141.5A13 13 0 0 1 116.742 141.5" stroke="#F45E50"/>
+    <path d="M116.742 141.5A13 13 0 0 1 128 122" stroke="#00AFC4"/>
+  </g>
 </svg>
