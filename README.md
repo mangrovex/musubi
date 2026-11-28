@@ -15,7 +15,7 @@ Se requiere Python 3.11 o superior y Docker con Compose para ejecutar el
 proyecto generado. Instala la versión publicada en PyPI y comprueba el CLI:
 
 ```bash
-python -m pip install musubi-framework==0.1.0
+python -m pip install musubi-framework==0.2.0
 musubi --version
 musubi profiles
 musubi init pagos --profile dev --output ./pagos
@@ -51,5 +51,5 @@ producción debe reemplazarse por una referencia inmutable con digest.
 
 ## Estado
 
-Estructura inicial `0.1.0`, publicada en PyPI. La licencia aún debe ser elegida
+Versión `0.2.0`, con integración RabbitMQ experimental. La licencia aún debe ser elegida
 por el propietario.

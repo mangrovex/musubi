@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "musubi-framework"
-version = "0.1.0"
+version = "0.2.0"
 description = "Framework for converging systems, APIs and AI on Zato 4.1"
 readme = "README.md"
 requires-python = ">=3.11"
