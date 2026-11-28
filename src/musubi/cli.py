@@ -19,6 +19,7 @@ def parser() -> argparse.ArgumentParser:
     init.add_argument("--output", type=Path)
     init.add_argument("--domain")
     init.add_argument("--force", action="store_true")
+    init.add_argument("--rabbitmq", action="store_true", help="incluye soporte opcional para RabbitMQ externo")
 
     commands.add_parser("profiles", help="lista los perfiles incluidos")
     for command in ("validate", "doctor"):
@@ -48,7 +49,7 @@ def run(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "init":
             destination = args.output or Path(args.name)
-            files = create_project(destination, args.name, args.profile, args.domain, args.force)
+            files = create_project(destination, args.name, args.profile, args.domain, args.force, args.rabbitmq)
             print(f"Proyecto {args.name} creado en {destination} ({len(files)} archivos, perfil {args.profile})")
             return 0
         if args.command == "validate":

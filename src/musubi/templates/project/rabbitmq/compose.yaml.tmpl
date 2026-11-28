@@ -1,0 +1,14 @@
+services:
+  zato:
+    image: musubi-rabbitmq-zato:local
+    build:
+      context: .
+      dockerfile: rabbitmq/Dockerfile
+      args:
+        ZATO_IMAGE: ${ZATO_IMAGE:?Pin the Zato image by digest}
+    environment:
+      Zato_Musubi_AMQP_CA: /run/musubi/rabbitmq-ca.pem
+      Zato_Install_Updates: "False"
+    volumes:
+      - ${RABBITMQ_CA_FILE:?Set RABBITMQ_CA_FILE}:/run/musubi/rabbitmq-ca.pem:ro
+      - ./rabbitmq/amqp-enmasse.yaml:/run/musubi/amqp-enmasse.yaml:ro

@@ -1,5 +1,7 @@
 # Musubi
 
+RabbitMQ externo es una opción experimental generada con `musubi init NAME --rabbitmq`. Consulta `rabbitmq/README.md` en el proyecto generado antes de activarla.
+
 ![Musubi](assets/brand/musubi-mark.png)
 
 **Musubi** (結び) significa “nudo” o “unión”: sistemas, APIs e IA distintos

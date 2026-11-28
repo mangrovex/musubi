@@ -30,3 +30,15 @@ class ProjectTests(TestCase):
             (root / "keep.txt").write_text("keep")
             with self.assertRaisesRegex(RuntimeError, "no está vacío"):
                 create_project(root, "demo", "dev")
+
+    def test_rabbitmq_is_opt_in(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            create_project(root / 'default', 'demo', 'dev')
+            create_project(root / 'rabbit', 'demo', 'prod', rabbitmq=True)
+            self.assertFalse((root / 'default' / 'rabbitmq').exists())
+            rabbit = root / 'rabbit' / 'rabbitmq'
+            for name in ('Dockerfile', 'harden-amqp.py', 'compose.yaml', 'amqp-enmasse.yaml', 'rabbit_services.py', 'README.md'):
+                self.assertTrue((rabbit / name).is_file(), name)
+            self.assertIn('amqps://', (rabbit / 'amqp-enmasse.yaml').read_text())
+            self.assertNotIn('musubitestonly', (rabbit / 'amqp-enmasse.yaml').read_text())

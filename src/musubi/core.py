@@ -56,6 +56,7 @@ def create_project(
     profile_name: str,
     domain: str | None = None,
     force: bool = False,
+    rabbitmq: bool = False,
 ) -> list[Path]:
     if destination.exists() and any(destination.iterdir()) and not force:
         raise MusubiError(f"El destino no está vacío: {destination}")
@@ -73,6 +74,8 @@ def create_project(
         if not source.is_file():
             continue
         relative = source.relative_to(template_root)
+        if relative.parts[0] == "rabbitmq" and not rabbitmq:
+            continue
         target_name = SPECIAL_TEMPLATE_NAMES.get(
             relative.name, relative.name.removesuffix(".tmpl")
         )

@@ -1,0 +1,40 @@
+"""Fail closed when the expected Zato 4.1 AMQP implementation changes."""
+from pathlib import Path
+
+path = Path('/opt/zato/4.1/code/zato-server/src/zato/server/connection/amqp_.py')
+source = path.read_text()
+signature = "def get_connection_class(object_name:'str', suffix:'str', is_tls:'bool') -> 'type_[KombuAMQPConnection]':\n"
+if source.count(signature) != 1:
+    raise SystemExit('Unsupported Zato AMQP implementation: TLS requirement not applied')
+source = source.replace(signature, signature + "    if not is_tls:\n        raise RuntimeError('Musubi requires AMQPS for all AMQP connections')\n")
+original = '''    class _AMQPConnection(Connection):
+        def get_transport_cls(self):'''
+replacement = '''    class _AMQPConnection(Connection):
+        def __init__(self, *args, **kwargs):
+            if is_tls:
+                from os import environ
+                ca_file = environ.get('Zato_Musubi_AMQP_CA')
+                if not ca_file:
+                    raise RuntimeError('Zato_Musubi_AMQP_CA is required for AMQP TLS')
+                kwargs['ssl'] = {'server_hostname': None, 'ca_certs': ca_file}
+            super().__init__(*args, **kwargs)
+
+        def get_transport_cls(self):'''
+if source.count(original) != 1:
+    raise SystemExit('Unsupported Zato AMQP implementation: TLS hardening not applied')
+source = source.replace(original, replacement)
+replacements = {
+    "logger.debug(f'[{self.cid}] Creating a new consumer -> {self.config.conn_url}')":
+        "logger.debug(f'[{self.cid}] Creating a new AMQP consumer')",
+    "f'`{self.config.conn_url}`, e:`{e}`'":
+        "f'error type: `{type(e).__name__}`'",
+    "f'[{self.cid}] Created an AMQP consumer for channel `{self.name}` -> queue=`{self.config.queue}` -> `{self.config.conn_url}`'":
+        "f'[{self.cid}] Created an AMQP consumer for channel `{self.name}` -> queue=`{self.config.queue}`'",
+    "f'`{self.get_log_details()}` -> {e!r}'":
+        "f'`{self.get_log_details()}` -> error type: {type(e).__name__}'",
+}
+for old, new in replacements.items():
+    if source.count(old) != 1:
+        raise SystemExit('Unsupported Zato AMQP implementation: log hardening not applied')
+    source = source.replace(old, new)
+path.write_text(source)

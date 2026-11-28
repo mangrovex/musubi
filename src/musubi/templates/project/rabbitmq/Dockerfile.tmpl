@@ -1,0 +1,4 @@
+ARG ZATO_IMAGE
+FROM ${ZATO_IMAGE}
+COPY rabbitmq/harden-amqp.py /tmp/musubi-harden-amqp.py
+RUN /opt/zato/4.1/code/bin/python /tmp/musubi-harden-amqp.py && rm /tmp/musubi-harden-amqp.py

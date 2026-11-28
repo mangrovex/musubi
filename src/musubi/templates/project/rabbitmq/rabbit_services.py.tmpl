@@ -1,0 +1,19 @@
+"""Examples: deploy deliberately; no public endpoint is created."""
+from zato.server.service import Service
+
+
+class RabbitPublisher(Service):
+    name = 'musubi.rabbit-publisher'
+
+    def handle(self):
+        # Use a pre-provisioned durable exchange and routing key.
+        self.out.amqp.publish('musubi-rabbit-publisher', self.request.payload,
+                              'musubi.events', 'musubi.events')
+
+
+class RabbitConsumer(Service):
+    name = 'musubi.rabbit-consumer'
+
+    def handle(self):
+        # Replace with idempotent durable processing; never log the payload.
+        self.logger.info('Received a RabbitMQ message; implement durable processing')

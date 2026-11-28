@@ -1,0 +1,19 @@
+# Edit the address, user and queue before import. Never put a password here.
+channel_amqp:
+  - name: musubi-rabbit-consumer
+    address: amqps://rabbitmq.example.com:5671/%2F
+    queue: musubi.events
+    service: musubi.rabbit-consumer
+    username: musubi-consumer
+    password: Zato_Enmasse_Env.AMQPPassword
+    data_format: json
+    pool_size: 1
+    prefetch_count: 1
+    ack_mode: ack
+outgoing_amqp:
+  - name: musubi-rabbit-publisher
+    address: amqps://rabbitmq.example.com:5671/%2F
+    username: musubi-consumer
+    password: Zato_Enmasse_Env.AMQPPassword
+    delivery_mode: persistent
+    content_type: application/json

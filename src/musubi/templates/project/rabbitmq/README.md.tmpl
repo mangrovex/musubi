@@ -1,0 +1,32 @@
+# RabbitMQ externo (opcional)
+
+Estos archivos se incluyen mediante `musubi init --rabbitmq`. La configuración
+es un ejemplo inactivo hasta que se desplieguen los servicios y se importe
+Enmasse; requiere una versión de Zato 4.1 compatible con el parche de imagen.
+
+1. Provisiona el broker y una cola y exchange durables, binding y DLQ. Limita
+   el usuario al virtual host y a los recursos requeridos.
+2. Edita `rabbitmq/amqp-enmasse.yaml`: cambia host, virtual host, usuario y cola.
+   Usa un nombre DNS que coincida con el certificado; no incluyas credenciales
+   en la URL. Usa `amqps://` y una CA confiable.
+3. Define `ZATO_IMAGE` fijada por digest y `RABBITMQ_CA_FILE` con la ruta absoluta
+   de la CA. La CA se usa para las conexiones AMQP TLS endurecidas. Mantén la
+   contraseña fuera del repositorio; Enmasse usa la variable `AMQPPassword` al
+   importar, no una variable llamada `Zato_Enmasse_Env.AMQPPassword`.
+4. Construye y arranca con `docker compose -f compose.yaml -f rabbitmq/compose.yaml up -d --build`.
+   Despliega `rabbitmq/rabbit_services.py` en el directorio de hot-deploy del
+   servidor (por ejemplo, usando `docker compose -f compose.yaml -f rabbitmq/compose.yaml cp rabbitmq/rabbit_services.py zato:/opt/zato/env/qs-1/server1/pickup/incoming/services/`).
+   Define `AMQPPassword` desde tu gestor de secretos y ejecuta:
+
+   ```bash
+   docker compose -f compose.yaml -f rabbitmq/compose.yaml exec -e AMQPPassword zato \
+     /opt/zato/current/bin/zato enmasse /opt/zato/env/qs-1/server1 --import --input /run/musubi/amqp-enmasse.yaml
+   ```
+
+   Verifica que `AMQPPassword` esté definida antes de importar: si falta,
+   Enmasse puede generar una contraseña distinta y la conexión fallará. Usa
+   caracteres aptos para URL en la contraseña, dado que Zato construye una URL
+   AMQP con ella. Comprueba la entrega y los permisos antes de operar.
+5. La implementación de ejemplo no es lógica de negocio: implementa procesamiento
+   idempotente y persistente, reintentos, DLQ y pruebas de recuperación antes de
+   producción. El broker y su almacenamiento permanecen externos.
