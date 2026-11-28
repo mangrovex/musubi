@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Musubi</title>
+  <desc id="desc">Tres lazos de colores se reúnen en un nudo.</desc>
+  <path d="M128 135C95 106 83 82 83 61C83 36 103 19 128 19S173 36 173 61C173 82 161 106 128 135Z" stroke="#231667" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M125 130C89 107 63 103 46 115C25 129 23 155 37 176S76 207 96 194C113 183 122 159 132 122" stroke="#00AFC4" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M131 130C167 107 193 103 210 115C231 129 233 155 219 176S180 207 160 194C143 183 134 159 124 122" stroke="#F45E50" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M83 61C83 85 97 108 128 135" stroke="#231667" stroke-width="16" stroke-linecap="round"/>
+  <path d="M128 135C142 123 154 109 161 97" stroke="#231667" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="128" cy="135" r="9" fill="#231667"/>
+</svg>

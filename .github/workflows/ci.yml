@@ -34,4 +34,4 @@ jobs:
             musubi validate "/tmp/demo-$profile"
           done
       - name: Validate static site
-        run: test -s site/index.html && test -s site/styles.css && test -s site/assets/musubi-mark.png
+        run: test -s site/index.html && test -s site/styles.css && test -s site/assets/musubi-mark.svg
