@@ -1,8 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" role="img" aria-labelledby="title desc">
   <title id="title">Musubi · び</title>
   <desc id="desc">Símbolo inspirado en la sílaba japonesa bi: la curva y dos marcas representan sistemas, APIs e inteligencia artificial.</desc>
-  <path d="M39 83C56 77 74 75 90 77C72 92 60 112 60 136C60 169 81 190 112 190C144 190 164 170 164 139C164 121 158 103 151 88" stroke="#252941" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M151 88C161 105 175 118 190 122" stroke="#00AFC4" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M173 53L183 68" stroke="#312186" stroke-width="12" stroke-linecap="round"/>
-  <path d="M197 47L207 62" stroke="#F45E50" stroke-width="12" stroke-linecap="round"/>
+  <defs><linearGradient id="connection" x1="150" y1="84" x2="188" y2="121" gradientUnits="userSpaceOnUse"><stop stop-color="#252941"/><stop offset=".48" stop-color="#00AFC4"/><stop offset="1" stop-color="#00AFC4"/></linearGradient></defs>
+  <path d="M46 87C59 83 73 81 87 82C71 97 62 116 62 136C62 168 82 187 113 187C144 187 163 168 163 138C163 119 158 101 150 84" stroke="#252941" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M150 84C160 101 173 113 188 119" stroke="url(#connection)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M172 53L180 66" stroke="#312186" stroke-width="12" stroke-linecap="round"/>
+  <path d="M193 47L201 60" stroke="#F45E50" stroke-width="12" stroke-linecap="round"/>
 </svg>
