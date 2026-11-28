@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" role="img" aria-label="Musubi">
+  <rect width="256" height="256" rx="56" fill="#17124B"/>
+  <path d="M41 85C56 80 73 78 88 80C71 96 60 116 60 137C60 171 81 191 113 191C145 191 165 171 165 139C165 120 159 101 151 84" stroke="#F4F6FF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M151 84C161 101 175 113 190 119" stroke="#31D1DE" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M173 49L182 63" stroke="#C6B9FF" stroke-width="14" stroke-linecap="round"/>
+  <path d="M195 43L204 57" stroke="#FF8172" stroke-width="14" stroke-linecap="round"/>
+</svg>

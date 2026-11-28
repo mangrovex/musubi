@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Musubi — Todo comienza con una unión</title><desc id="desc">Sistemas, APIs e inteligencia artificial se encuentran en Musubi.</desc>
+<rect width="1200" height="630" fill="#10143A"/>
+<rect x="745" y="66" width="390" height="498" rx="28" fill="#1D244E" stroke="#39416D"/>
+<text x="80" y="112" fill="#70DDE8" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="3">FRAMEWORK DE INTEGRACIÓN · ZATO 4.1</text>
+<text x="80" y="236" fill="#F4F6FF" font-family="Arial,sans-serif" font-size="79" font-weight="700" letter-spacing="-3">musubi</text>
+<text x="80" y="308" fill="#F4F6FF" font-family="Arial,sans-serif" font-size="36" font-weight="700">Todo comienza con una unión.</text>
+<text x="80" y="367" fill="#B9C3DA" font-family="Arial,sans-serif" font-size="23">Sistemas, APIs e inteligencia artificial.</text>
+<line x1="80" y1="431" x2="627" y2="431" stroke="#39416D" stroke-width="2"/>
+<circle cx="89" cy="485" r="7" fill="#00AFC4"/><text x="109" y="493" fill="#B9C3DA" font-family="Arial,sans-serif" font-size="20">Sistemas</text>
+<circle cx="249" cy="485" r="7" fill="#C6B9FF"/><text x="269" y="493" fill="#B9C3DA" font-family="Arial,sans-serif" font-size="20">APIs</text>
+<circle cx="376" cy="485" r="7" fill="#F45E50"/><text x="396" y="493" fill="#B9C3DA" font-family="Arial,sans-serif" font-size="20">IA</text>
+<svg x="805" y="121" width="300" height="300" viewBox="0 0 256 256" fill="none">
+  <defs><linearGradient id="connection" x1="150" y1="84" x2="188" y2="121" gradientUnits="userSpaceOnUse"><stop stop-color="#F4F6FF"/><stop offset=".48" stop-color="#31D1DE"/><stop offset="1" stop-color="#31D1DE"/></linearGradient></defs>
+  <path d="M46 87C59 83 73 81 87 82C71 97 62 116 62 136C62 168 82 187 113 187C144 187 163 168 163 138C163 119 158 101 150 84" stroke="#F4F6FF" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M150 84C160 101 173 113 188 119" stroke="url(#connection)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M172 53L180 66" stroke="#C6B9FF" stroke-width="12" stroke-linecap="round"/><path d="M193 47L201 60" stroke="#FF8172" stroke-width="12" stroke-linecap="round"/>
+</svg>
+<line x1="785" y1="477" x2="1095" y2="477" stroke="#39416D" stroke-width="2"/>
+<text x="785" y="523" fill="#B9C3DA" font-family="Arial,sans-serif" font-size="18">結び · musubi · unión</text>
+</svg>

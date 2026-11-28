@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Musubi · び, para fondos oscuros</title>
+  <desc id="desc">La curva y dos marcas representan sistemas, APIs e inteligencia artificial.</desc>
+  <defs><linearGradient id="connection" x1="150" y1="84" x2="188" y2="121" gradientUnits="userSpaceOnUse"><stop stop-color="#F4F6FF"/><stop offset=".48" stop-color="#31D1DE"/><stop offset="1" stop-color="#31D1DE"/></linearGradient></defs>
+  <path d="M46 87C59 83 73 81 87 82C71 97 62 116 62 136C62 168 82 187 113 187C144 187 163 168 163 138C163 119 158 101 150 84" stroke="#F4F6FF" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M150 84C160 101 173 113 188 119" stroke="url(#connection)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M172 53L180 66" stroke="#C6B9FF" stroke-width="12" stroke-linecap="round"/>
+  <path d="M193 47L201 60" stroke="#FF8172" stroke-width="12" stroke-linecap="round"/>
+</svg>
